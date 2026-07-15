@@ -19,7 +19,7 @@ Le projet démontre l'intégration de plusieurs briques d'IA générative : RAG 
 
 ## Le client fictif : Luméa
 
-Marque de skincare bio vendue en direct au consommateur (DTC), 8 produits (nettoyant, sérum, crème jour, baume nuit, démaquillant, contour des yeux, masque, huile sèche). Cible : 25-40 ans sensibles à la clean beauty, panier moyen ~45€. Problématique : scaler l'acquisition et le support client sans recruter, tout en professionnalisant la présence sociale.
+Marque de skincare bio vendue en direct au consommateur (DTC), 8 produits (nettoyant, sérum, crème jour, baume nuit, démaquillant, contour des yeux, masque, huile sèche). Cible : 25-40 ans sensibles à la clean beauty, panier moyen 45€. Problématique : scaler l'acquisition et le support client sans recruter, tout en professionnalisant la présence sociale.
 
 ## Architecture du projet
 

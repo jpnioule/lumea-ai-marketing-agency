@@ -126,4 +126,4 @@ ANTHROPIC_API_KEY=your_key_here
 
 ---
 
-**Auteur :** JP — Master 2 Data Marketing & Commercial Development, INSEEC
+**Auteur :** Jean Philippe NIOULE — Master 2 Data Marketing INSEEC

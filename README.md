@@ -1,6 +1,6 @@
 # Luméa — AI Marketing Agency
 
-Projet réalisé dans le cadre du module M2 Data Marketing  (INSEEC, 2025-2026), consistant à concevoir un écosystème marketing complet piloté par l'IA pour une marque fictive de skincare, **Luméa**.
+Projet réalisé dans le cadre de mon M2 Data Marketing  (INSEEC, 2025-2026), consistant à concevoir un écosystème marketing complet piloté par l'IA pour une marque fictive de skincare, **Luméa**.
 
 Le projet démontre l'intégration de plusieurs briques d'IA générative : RAG (Retrieval-Augmented Generation), agent de création de contenu autonome, automatisation marketing via n8n, et développement rapide d'interface.
 

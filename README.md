@@ -117,4 +117,4 @@ Importer les fichiers `.json` du dossier `n8n-workflows/` (et `instagram-agent/n
 
 ## Cadre pédagogique
 
-Projet réalisé dans le cadre du cours "AI Marketing Agency" du Master 2 Data Marketing, mobilisant les compétences LLM, prompt engineering, architecture RAG, agents IA et automatisation n8n vues en cours.
+Projet réalisé dans le cadre du cours "Predictive Analytics & Data Intelligence" du Master 2 Data Marketing, mobilisant les compétences LLM, prompt engineering, architecture RAG, agents IA et automatisation n8n vues en cours.

@@ -1,0 +1,964 @@
+{
+  "name": "Luméa - Nurturing email (5 emails)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lumea-nouveau-lead",
+        "options": {}
+      },
+      "id": "12cdd988-d5e9-4768-af00-18f4c68d1756",
+      "name": "Webhook - Nouveau lead (formulaire landing page)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -3968,
+        608
+      ],
+      "webhookId": "46c18adc-c42e-45d8-a9e6-497d1e67793d"
+    },
+    {
+      "parameters": {
+        "fromEmail": "infoslumea33@gmail.com",
+        "toEmail": "={{ $json.fields.Email }}",
+        "subject": "Bienvenue chez Luméa (et un petit cadeau)",
+        "emailFormat": "text",
+        "text": "={{ $json.fields.Prenom }},\n\nMerci de vous être inscrit·e ! Chez Luméa, on croit à une routine skincare simple, efficace et respectueuse de votre peau comme de la planète.\n\nEn cadeau de bienvenue, voici notre guide \"Routine idéale matin & soir\".\n\nÀ très vite,\nL'équipe Luméa",
+        "options": {}
+      },
+      "id": "e127d265-e72a-4790-9338-b049833047ab",
+      "name": "Email 1 - Bienvenue (immédiat)",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -3520,
+        608
+      ],
+      "webhookId": "5dd0f523-19cc-4e28-a909-a2cf5e2bf991",
+      "credentials": {
+        "smtp": {
+          "id": "8INLX1jRNm3nWbt2",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "days"
+      },
+      "id": "3a53b90d-d851-4b3e-8f7b-1a9905a2cfce",
+      "name": "Attente 2 jours",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -3296,
+        608
+      ],
+      "webhookId": "675d7125-8abf-4fb3-a041-7f74f9c4e8bc"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "apppMlR84zmEAmmkx",
+          "mode": "list",
+          "cachedResultName": "Luméa CRM",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx"
+        },
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": "Leads"
+        },
+        "filterByFormula": "={{ '{Email} = \"' + $json.email + '\"' }}",
+        "options": {}
+      },
+      "id": "c589e109-819c-4e6a-8e87-0f82afc4a6be",
+      "name": "Vérification achat (1)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -3088,
+        608
+      ],
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "dG6X6fovhPxPXvcr",
+          "name": "Airtable OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json['A acheté'] }}",
+              "value2": true
+            }
+          ],
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          }
+        },
+        "options": {}
+      },
+      "id": "17859921-86da-4e85-8cab-78bc76de3da0",
+      "name": "A déjà acheté ? (1)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -2864,
+        608
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5a1fab75-0fb6-4f5f-b320-df5c636f1705",
+      "name": "Sortie séquence - converti (1)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -2640,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "infoslumea33@gmail.com",
+        "toEmail": "={{ $json.fields.Email }}",
+        "subject": "={{ $json.fields['Produit consulté'] }}",
+        "emailFormat": "text",
+        "text": "=Bonjour {{ $json.fields.Prenom }},\n\nVous avez consulté notre {{ $json.fields['Produit consulté'] }} — excellent choix. Ce produit fait partie des favoris de notre communauté pour ses bienfaits ciblés.\n\nDes questions sur la routine ou la compatibilité avec votre peau ? Notre assistant est disponible directement sur le site.\n\nL'équipe Luméa",
+        "options": {}
+      },
+      "id": "49c41147-9ffb-4bcf-bbf0-ca221da68e64",
+      "name": "Email 2 - Focus produit (J+2)",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -2640,
+        464
+      ],
+      "webhookId": "bf21d4a7-846b-4924-a3cd-5694817d8e01",
+      "credentials": {
+        "smtp": {
+          "id": "8INLX1jRNm3nWbt2",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 3,
+        "unit": "days"
+      },
+      "id": "95abc624-7cc0-4cf5-8a59-66232551cab9",
+      "name": "Attente 3 jours",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -2416,
+        464
+      ],
+      "webhookId": "cbbca135-e0e8-4e75-afdb-853138578da5"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "apppMlR84zmEAmmkx",
+          "mode": "list",
+          "cachedResultName": "Luméa CRM",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx"
+        },
+        "table": {
+          "value": "Leads"
+        },
+        "filterByFormula": "={{ '{Email} = \"' + $json.email + '\"' }}",
+        "options": {}
+      },
+      "id": "477ca4db-a7d3-45ef-b85f-1bd4902007c1",
+      "name": "Vérification achat (2)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -2208,
+        464
+      ],
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "dG6X6fovhPxPXvcr",
+          "name": "Airtable OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json['A acheté'] }}",
+              "value2": true
+            }
+          ],
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          }
+        },
+        "options": {}
+      },
+      "id": "0ba64a2c-3d02-425b-a391-645ad3ba9d51",
+      "name": "A déjà acheté ? (2)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1984,
+        464
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "de406703-c404-4bb2-88dd-46a5f826fdf1",
+      "name": "Sortie séquence - converti (2)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -1760,
+        608
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "infoslumea33@gmail.com",
+        "toEmail": "={{ $json.fields.Email }}",
+        "subject": "Ce que nos client·e·s en disent",
+        "emailFormat": "text",
+        "text": "=Bonjour {{ $json.fields.Prenom }},\n\n\"Ma peau n'a jamais été aussi hydratée, sans aucune irritation.\" — Camille, 32 ans\n\"Le geste bio que j'attendais depuis des années.\" — Thomas, 28 ans\n\nRejoignez les milliers de personnes qui ont adopté une routine Luméa.\n\nL'équipe Luméa",
+        "options": {}
+      },
+      "id": "944b9ebe-1d64-428a-a44b-59c17f1eaffb",
+      "name": "Email 3 - Preuve sociale (J+5)",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -1760,
+        304
+      ],
+      "webhookId": "2eb62a41-253b-4d30-ba6e-d5d68df1ad70",
+      "credentials": {
+        "smtp": {
+          "id": "8INLX1jRNm3nWbt2",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 4,
+        "unit": "days"
+      },
+      "id": "8b8fb10e-fa2f-46aa-b0e0-8536d3c37d5b",
+      "name": "Attente 4 jours",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -1536,
+        304
+      ],
+      "webhookId": "d1ac6633-ab69-487d-a973-d044401092d6"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "apppMlR84zmEAmmkx",
+          "mode": "list",
+          "cachedResultName": "Luméa CRM",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx"
+        },
+        "table": {
+          "value": "Leads"
+        },
+        "filterByFormula": "={{ '{Email} = \"' + $json.email + '\"' }}",
+        "options": {}
+      },
+      "id": "9a9a604c-6067-4baa-b527-c4e7f9863943",
+      "name": "Vérification achat (3)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -1328,
+        304
+      ],
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "dG6X6fovhPxPXvcr",
+          "name": "Airtable OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json['A acheté'] }}",
+              "value2": true
+            }
+          ],
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          }
+        },
+        "options": {}
+      },
+      "id": "78d3b758-bf58-4db7-8e9d-b04b5cd1aafe",
+      "name": "A déjà acheté ? (3)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -1104,
+        304
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fb41378a-df84-455b-b5fc-44ef9bc380ec",
+      "name": "Sortie séquence - converti (3)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        464
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "infoslumea33@gmail.com",
+        "toEmail": "={{ $json.fields.Email }}",
+        "subject": "-10% sur votre première commande",
+        "emailFormat": "text",
+        "text": "Bonjour {{ $json.fields.Prenom }},\n\nPour vous encourager à essayer Luméa, voici un code exclusif : BIENVENUE10\nValable 5 jours sur l'ensemble de la gamme.\n\nL'équipe Luméa",
+        "options": {}
+      },
+      "id": "42011016-cddb-42a5-8c72-a9de6de7a586",
+      "name": "Email 4 - Code promo (J+9)",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -880,
+        160
+      ],
+      "webhookId": "2603d62d-9f3e-4903-b35a-af234dc1d486",
+      "credentials": {
+        "smtp": {
+          "id": "8INLX1jRNm3nWbt2",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "unit": "days"
+      },
+      "id": "16b6c26b-dd8e-4c88-86a7-f7ac5c4fee0a",
+      "name": "Attente 5 jours",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -656,
+        160
+      ],
+      "webhookId": "3910e9f0-0d9b-4f64-88bf-010f7a5c19c2"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "apppMlR84zmEAmmkx",
+          "mode": "list",
+          "cachedResultName": "Luméa CRM",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx"
+        },
+        "table": {
+          "value": "Leads"
+        },
+        "filterByFormula": "={{ '{Email} = \"' + $json.email + '\"' }}",
+        "options": {}
+      },
+      "id": "bfc7cfae-0ba0-4cbf-93e0-56c5a9b50b74",
+      "name": "Vérification achat (4)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -448,
+        160
+      ],
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "dG6X6fovhPxPXvcr",
+          "name": "Airtable OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json['A acheté'] }}",
+              "value2": true
+            }
+          ],
+          "combinator": "and",
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          }
+        },
+        "options": {}
+      },
+      "id": "c6c882ec-862f-42fd-b5ec-8c48284bccc4",
+      "name": "A déjà acheté ? (4)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        160
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "62863c2c-91fa-4e2a-b0ce-b1151fcedf3b",
+      "name": "Sortie séquence - converti (4)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        0,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "infoslumea33@gmail.com",
+        "toEmail": "={{ $json.fields.Email }}",
+        "subject": "Votre code expire bientôt",
+        "emailFormat": "text",
+        "text": "Bonjour {{ $json.fields.Prenom }},\n\nVotre code BIENVENUE10 expire dans 24h. C'est le moment idéal pour démarrer votre routine Luméa.\n\nÀ très vite,\nL'équipe Luméa",
+        "options": {}
+      },
+      "id": "a2bb4e41-2ae4-4489-aedf-bd7121262cd9",
+      "name": "Email 5 - Dernière relance (J+14)",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "96cd1493-43a9-4239-ba3a-9a7b7fbd791e",
+      "credentials": {
+        "smtp": {
+          "id": "8INLX1jRNm3nWbt2",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "apppMlR84zmEAmmkx",
+          "mode": "list",
+          "cachedResultName": "Luméa CRM",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldzFrclB8wwkgaW",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx/tbldzFrclB8wwkgaW"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Statut": "Séquence terminée",
+            "id": "={{ $('Vérification achat (4)').item.json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Prenom",
+              "displayName": "Prenom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Produit consulté",
+              "displayName": "Produit consulté",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "A acheté",
+              "displayName": "A acheté",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "95894688-f916-485a-b3e6-f5d23a04711f",
+      "name": "Fin de séquence (mise à jour statut)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        0
+      ],
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "dG6X6fovhPxPXvcr",
+          "name": "Airtable OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "apppMlR84zmEAmmkx",
+          "mode": "list",
+          "cachedResultName": "Luméa CRM",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbldzFrclB8wwkgaW",
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://airtable.com/apppMlR84zmEAmmkx/tbldzFrclB8wwkgaW"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "A acheté": false,
+            "Prenom": "={{ $json.body.prenom }}",
+            "Produit consulté": "={{ $json.body.produit_consulte }}",
+            "Statut": "Nurturing en cours",
+            "Email": "={{ $json.body.email }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Prenom",
+              "displayName": "Prenom",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Produit consulté",
+              "displayName": "Produit consulté",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Statut",
+              "displayName": "Statut",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "A acheté",
+              "displayName": "A acheté",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "boolean",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.2,
+      "position": [
+        -3760,
+        608
+      ],
+      "id": "a5443a1f-a112-4751-9ab1-b238d01b0561",
+      "name": "Enregistrement du lead (Airtable)",
+      "credentials": {
+        "airtableOAuth2Api": {
+          "id": "dG6X6fovhPxPXvcr",
+          "name": "Airtable OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook - Nouveau lead (formulaire landing page)": {
+      "main": [
+        [
+          {
+            "node": "Enregistrement du lead (Airtable)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email 1 - Bienvenue (immédiat)": {
+      "main": [
+        [
+          {
+            "node": "Attente 2 jours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attente 2 jours": {
+      "main": [
+        [
+          {
+            "node": "Vérification achat (1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérification achat (1)": {
+      "main": [
+        [
+          {
+            "node": "A déjà acheté ? (1)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "A déjà acheté ? (1)": {
+      "main": [
+        [
+          {
+            "node": "Sortie séquence - converti (1)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email 2 - Focus produit (J+2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email 2 - Focus produit (J+2)": {
+      "main": [
+        [
+          {
+            "node": "Attente 3 jours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attente 3 jours": {
+      "main": [
+        [
+          {
+            "node": "Vérification achat (2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérification achat (2)": {
+      "main": [
+        [
+          {
+            "node": "A déjà acheté ? (2)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "A déjà acheté ? (2)": {
+      "main": [
+        [
+          {
+            "node": "Sortie séquence - converti (2)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email 3 - Preuve sociale (J+5)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email 3 - Preuve sociale (J+5)": {
+      "main": [
+        [
+          {
+            "node": "Attente 4 jours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attente 4 jours": {
+      "main": [
+        [
+          {
+            "node": "Vérification achat (3)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérification achat (3)": {
+      "main": [
+        [
+          {
+            "node": "A déjà acheté ? (3)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "A déjà acheté ? (3)": {
+      "main": [
+        [
+          {
+            "node": "Sortie séquence - converti (3)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email 4 - Code promo (J+9)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email 4 - Code promo (J+9)": {
+      "main": [
+        [
+          {
+            "node": "Attente 5 jours",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attente 5 jours": {
+      "main": [
+        [
+          {
+            "node": "Vérification achat (4)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérification achat (4)": {
+      "main": [
+        [
+          {
+            "node": "A déjà acheté ? (4)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "A déjà acheté ? (4)": {
+      "main": [
+        [
+          {
+            "node": "Sortie séquence - converti (4)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Email 5 - Dernière relance (J+14)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email 5 - Dernière relance (J+14)": {
+      "main": [
+        [
+          {
+            "node": "Fin de séquence (mise à jour statut)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enregistrement du lead (Airtable)": {
+      "main": [
+        [
+          {
+            "node": "Email 1 - Bienvenue (immédiat)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "c839bbfb-3f6f-4117-86b0-5709a03192dd",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d58e0f8f74f03aa835482289cd2b93c77806cd3f12cb2d1ebef232a13f0f228e"
+  },
+  "nodeGroups": [],
+  "id": "hVwKRFPjZ1PQxuPi",
+  "tags": []
+}

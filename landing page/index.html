@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luméa | Cosmétiques & Skincare Bio de Luxe</title>
+    <meta name="description" content="Découvrez Luméa, la marque de cosmétiques et de soins skincare bio et naturels. Formules riches en actifs botaniques pour une peau saine, lumineuse et éclatante.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar" id="announcement-bar">
+        <p>Livraison offerte dès 50€ d'achat • Retours gratuits sous 30 jours • -15% sur votre première commande</p>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Menu principal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <!-- Navigation Links -->
+            <nav class="nav-links" id="nav-links">
+                <ul>
+                    <li><a href="#routine" class="nav-link">Le Rituel</a></li>
+                    <li><a href="#best-sellers" class="nav-link">Best-Sellers</a></li>
+                    <li><a href="#ingredients" class="nav-link">Ingrédients</a></li>
+                    <li><a href="#testimonials" class="nav-link">Avis</a></li>
+                </ul>
+            </nav>
+
+            <!-- Logo -->
+            <div class="logo">
+                <a href="#" id="logo-link">LUMÉA</a>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <button class="action-btn" id="search-btn" aria-label="Rechercher">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <button class="action-btn" id="account-btn" aria-label="Mon compte">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+                <button class="action-btn cart-btn" id="cart-toggle" aria-label="Panier">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-glow-1"></div>
+            <div class="hero-glow-2"></div>
+            <div class="hero-background">
+                <img src="images/hero_banner.png" alt="Produits cosmétiques Luméa sur pierres naturelles" class="hero-img">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <span class="hero-subtitle">Skincare Bio & Botanique de Luxe</span>
+                <h1 class="hero-title">Révélez l'Éclat Naturel de Votre Peau</h1>
+                <p class="hero-description">Des soins d'exception certifiés bio, formulés à partir d'actifs végétaux purs et hautement concentrés pour sublimer votre épiderme.</p>
+                <div class="hero-actions">
+                    <a href="#best-sellers" class="btn btn-primary" id="hero-cta-shop">Acheter la collection</a>
+                    <a href="#routine" class="btn btn-secondary" id="hero-cta-routine">Découvrir le Rituel</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Propositions (Fenty-style banner highlight) -->
+        <section class="value-props" id="value-props">
+            <div class="prop-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span>Formules 100% Véganes</span>
+            </div>
+            <div class="prop-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Certifié Bio & Ecocert</span>
+            </div>
+            <div class="prop-item">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span>Cruelty-Free & Écoresponsable</span>
+            </div>
+        </section>
+
+        <!-- The Routine Section (Le Rituel Luméa) -->
+        <section class="routine" id="routine">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Le Rituel Luméa</h2>
+                    <p>Trois étapes simples et essentielles pour restaurer la barrière cutanée et libérer la lumière.</p>
+                </div>
+                <div class="routine-steps">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-num">01</div>
+                        <h3>Nettoyer</h3>
+                        <p class="step-sub">Débarrasser la peau des impuretés tout en préservant son film hydrolipidique naturel.</p>
+                        <a href="#best-sellers" class="step-link">Voir le nettoyant
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-num">02</div>
+                        <h3>Tonifier</h3>
+                        <p class="step-sub">Rééquilibrer le pH de la peau, resserrer les pores et préparer l'épiderme aux soins suivants.</p>
+                        <a href="#best-sellers" class="step-link">Voir la brume
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-num">03</div>
+                        <h3>Hydrater & Traiter</h3>
+                        <p class="step-sub">Nourrir en profondeur avec notre élixir antioxydant et sceller l'hydratation avec la crème intense.</p>
+                        <a href="#best-sellers" class="step-link">Voir les soins
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Best-Sellers Product Grid -->
+        <section class="best-sellers" id="best-sellers">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Les Essentiels de la Collection</h2>
+                    <p>Découvrez nos best-sellers certifiés bio formulés pour tous types de peaux, même les plus sensibles.</p>
+                </div>
+                
+                <div class="products-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card" data-id="p1" data-name="Gel Nettoyant Purifiant Botanique" data-price="24.00" data-img="images/product_cleanser.png">
+                        <div class="product-image-container">
+                            <img src="images/product_cleanser.png" alt="Gel Nettoyant Purifiant Botanique" class="product-img">
+                            <span class="product-badge badge-bio">BIO</span>
+                            <span class="product-badge badge-new">Nouveau</span>
+                            <button class="quick-add-btn" aria-label="Ajout rapide au panier">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(48)</span>
+                            </div>
+                            <h3 class="product-title">Gel Nettoyant Purifiant Botanique</h3>
+                            <p class="product-subtitle">Aloe Vera bio & Extrait de Menthe douce</p>
+                            <p class="product-price">24,00 €</p>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card" data-id="p2" data-name="Brume Tonique Active à la Rose" data-price="28.00" data-img="images/product_toner.png">
+                        <div class="product-image-container">
+                            <img src="images/product_toner.png" alt="Brume Tonique Active à la Rose" class="product-img">
+                            <span class="product-badge badge-bio">BIO</span>
+                            <button class="quick-add-btn" aria-label="Ajout rapide au panier">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(64)</span>
+                            </div>
+                            <h3 class="product-title">Brume Tonique Active à la Rose</h3>
+                            <p class="product-subtitle">Hydrolat de Rose de Damas & Camomille</p>
+                            <p class="product-price">28,00 €</p>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card" data-id="p3" data-name="Élixir Éclat Vitamine C" data-price="42.00" data-img="images/product_serum.png">
+                        <div class="product-image-container">
+                            <img src="images/product_serum.png" alt="Élixir Éclat Vitamine C" class="product-img">
+                            <span class="product-badge badge-bio">BIO</span>
+                            <span class="product-badge badge-popular">Favori</span>
+                            <button class="quick-add-btn" aria-label="Ajout rapide au panier">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(112)</span>
+                            </div>
+                            <h3 class="product-title">Élixir Éclat Vitamine C</h3>
+                            <p class="product-subtitle">Thé Vert bio & Vitamine C Végétale</p>
+                            <p class="product-price">42,00 €</p>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card" data-id="p4" data-name="Crème Hydratante Intense" data-price="38.00" data-img="images/product_cream.png">
+                        <div class="product-image-container">
+                            <img src="images/product_cream.png" alt="Crème Hydratante Intense" class="product-img">
+                            <span class="product-badge badge-bio">BIO</span>
+                            <button class="quick-add-btn" aria-label="Ajout rapide au panier">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>Ajouter</span>
+                            </button>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(95)</span>
+                            </div>
+                            <h3 class="product-title">Crème Hydratante Intense</h3>
+                            <p class="product-subtitle">Acide Hyaluronique Végétal & Jojoba</p>
+                            <p class="product-price">38,00 €</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ingredient & Texture Showcase (Interactive Story) -->
+        <section class="ingredients" id="ingredients">
+            <div class="section-container ingredients-grid">
+                <div class="ingredients-image">
+                    <img src="images/texture_ingredient.png" alt="Textures cosmétiques Luméa" class="texture-img">
+                </div>
+                <div class="ingredients-content">
+                    <span class="section-subtitle">Secrets d'Efficacité</span>
+                    <h2>L'Alchimie de la Nature</h2>
+                    <p class="ingredients-intro">Nous sélectionnons des actifs biologiques purs à l'efficacité prouvée. Pas de superflu, uniquement l'essentiel pour votre peau.</p>
+                    
+                    <div class="ingredients-list">
+                        <!-- Ingredient item 1 -->
+                        <div class="ingredient-item active" data-index="0">
+                            <button class="ingredient-header" aria-expanded="true">
+                                <span>01. Acide Hyaluronique Végétal</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="ingredient-body">
+                                <p>Extrait de la fermentation de blé naturel, il retient jusqu'à 1000 fois son poids en eau. Il repulpe instantanément l'épiderme et lisse les ridules de déshydratation.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ingredient item 2 -->
+                        <div class="ingredient-item" data-index="1">
+                            <button class="ingredient-header" aria-expanded="false">
+                                <span>02. Aloe Vera Bio Pur</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="ingredient-body">
+                                <p>Riche en vitamines et minéraux, notre gel d'aloe vera natif et bio apaise immédiatement les rougeurs, hydrate et stimule le processus de régénération cellulaire de la peau.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ingredient item 3 -->
+                        <div class="ingredient-item" data-index="2">
+                            <button class="ingredient-header" aria-expanded="false">
+                                <span>03. Extrait de Thé Vert Actif</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="ingredient-body">
+                                <p>Un antioxydant puissant riche en polyphénols. Il protège la peau du stress oxydatif provoqué par la pollution et les rayons UV, tout en tonifiant et en purifiant le teint.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ingredient item 4 -->
+                        <div class="ingredient-item" data-index="3">
+                            <button class="ingredient-header" aria-expanded="false">
+                                <span>04. Hydrolat de Rose de Damas</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="ingredient-body">
+                                <p>Distillé à la vapeur d'eau à partir de pétales fraîchement cueillis, cet hydrolat illumine le teint, calme les irritations et rafraîchit l'épiderme tout en déposant un parfum floral délicat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Carousel Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Votre Peau Parle de Nous</h2>
+                    <p>Découvrez les retours d'expérience sincères de notre communauté.</p>
+                </div>
+                
+                <div class="carousel-container">
+                    <div class="carousel-track-container">
+                        <ul class="carousel-track" id="testimonial-track">
+                            <!-- Slide 1 -->
+                            <li class="carousel-slide active">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-rating">★★★★★</div>
+                                    <blockquote class="testimonial-quote">"L'Élixir Éclat a complètement transformé ma peau fatiguée. En seulement deux semaines de rituel, mon teint est devenu tellement plus lumineux, et ma peau est douce sans effet gras !"</blockquote>
+                                    <cite class="testimonial-author">Sarah M. — <span>Peau Mixte</span></cite>
+                                </div>
+                            </li>
+                            <!-- Slide 2 -->
+                            <li class="carousel-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-rating">★★★★★</div>
+                                    <blockquote class="testimonial-quote">"J'ai une peau hyper réactive et j'avais peur d'essayer une nouvelle routine. Le nettoyant botanique et la crème intense hydratent et calment ma peau instantanément. Je recommande les yeux fermés."</blockquote>
+                                    <cite class="testimonial-author">Julien D. — <span>Peau Sensible</span></cite>
+                                </div>
+                            </li>
+                            <!-- Slide 3 -->
+                            <li class="carousel-slide">
+                                <div class="testimonial-card">
+                                    <div class="testimonial-rating">★★★★★</div>
+                                    <blockquote class="testimonial-quote">"La Brume à la Rose est devenue mon indispensable de la journée. Un coup de spray après le nettoyage et ma peau est repulpée et apaisée. Le parfum naturel est divin."</blockquote>
+                                    <cite class="testimonial-author">Léa K. — <span>Peau Sèche</span></cite>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <div class="carousel-nav">
+                        <button class="carousel-btn btn-prev" id="carousel-prev" aria-label="Avis précédent">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <div class="carousel-dots" id="carousel-dots">
+                            <button class="carousel-dot active" aria-label="Avis 1"></button>
+                            <button class="carousel-dot" aria-label="Avis 2"></button>
+                            <button class="carousel-dot" aria-label="Avis 3"></button>
+                        </div>
+                        <button class="carousel-btn btn-next" id="carousel-next" aria-label="Avis suivant">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social / Instagram Grid Section -->
+        <section class="social-grid-section" id="social">
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Inspirations & Communauté</h2>
+                    <p>Rejoignez-nous sur Instagram <a href="#" class="social-hashtag">#LumeaGlow</a> pour partager vos routines beauté.</p>
+                </div>
+                
+                <div class="social-grid">
+                    <div class="social-item">
+                        <img src="images/product_cleanser.png" alt="Gel Nettoyant dans la routine" class="social-img">
+                        <div class="social-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>243</span>
+                        </div>
+                    </div>
+                    <div class="social-item">
+                        <img src="images/hero_banner.png" alt="Routine Luméa complète" class="social-img">
+                        <div class="social-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>412</span>
+                        </div>
+                    </div>
+                    <div class="social-item">
+                        <img src="images/product_serum.png" alt="Élixir Luméa flacon ambré" class="social-img">
+                        <div class="social-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>189</span>
+                        </div>
+                    </div>
+                    <div class="social-item">
+                        <img src="images/texture_ingredient.png" alt="Texture onctueuse de la crème" class="social-img">
+                        <div class="social-overlay">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                            <span>351</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter" id="newsletter">
+            <div class="newsletter-container">
+                <span class="newsletter-tag">Rejoignez-nous</span>
+                <h2>Restons Connectés</h2>
+                <p>Abonnez-vous à notre lettre d'informations pour recevoir nos astuces skincare bio, nos lancements en avant-première et bénéficier de <strong>15% de réduction</strong> sur votre premier achat.</p>
+                
+                <form class="newsletter-form" id="newsletter-form">
+                    <div class="form-group form-group-secondary">
+                        <input type="text" placeholder="Votre prénom" aria-label="Votre prénom" required id="newsletter-prenom">
+                    </div>
+                    <div class="form-group form-group-secondary">
+                        <select aria-label="Produit qui vous intéresse" id="newsletter-produit" required>
+                            <option value="" disabled selected>Quel produit vous intéresse ?</option>
+                            <option value="Gel Nettoyant Purifiant Botanique">Gel Nettoyant Purifiant Botanique</option>
+                            <option value="Brume Tonique Active à la Rose">Brume Tonique Active à la Rose</option>
+                            <option value="Élixir Éclat Vitamine C">Élixir Éclat Vitamine C</option>
+                            <option value="Crème Hydratante Intense">Crème Hydratante Intense</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Votre adresse e-mail" aria-label="Votre adresse e-mail" required id="newsletter-email">
+                        <button type="submit" class="btn btn-primary" id="newsletter-submit">S'abonner</button>
+                    </div>
+                </form>
+                <div class="newsletter-success" id="newsletter-success" style="display: none;">
+                    Merci ! Votre inscription a bien été enregistrée. Vérifiez votre boîte mail pour obtenir vos -15%.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Side Cart Drawer -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div class="cart-drawer-header">
+            <h2 id="cart-title">Votre Panier (<span id="cart-drawer-count">0</span>)</h2>
+            <button class="cart-close" id="cart-close" aria-label="Fermer le panier">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Shipping Progress Bar -->
+        <div class="cart-shipping-progress" id="cart-shipping-progress">
+            <p id="cart-shipping-text">Plus que <strong id="cart-shipping-remaining">50,00 €</strong> pour la livraison gratuite !</p>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="cart-shipping-progress-bar"></div>
+            </div>
+        </div>
+        
+        <!-- Cart Items List (empty by default) -->
+        <div class="cart-items" id="cart-items">
+            <!-- Empty state -->
+            <div class="cart-empty-state" id="cart-empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                </svg>
+                <p>Votre panier est vide</p>
+                <a href="#best-sellers" class="btn btn-primary btn-sm" id="cart-empty-cta">Découvrir nos soins</a>
+            </div>
+            
+            <ul class="cart-list" id="cart-list" style="display: none;">
+                <!-- Dynamically populated via JS -->
+            </ul>
+        </div>
+        
+        <!-- Cart Footer -->
+        <div class="cart-drawer-footer" id="cart-drawer-footer" style="display: none;">
+            <div class="cart-subtotal">
+                <span>Sous-total</span>
+                <span class="subtotal-price" id="cart-subtotal-price">0,00 €</span>
+            </div>
+            <p class="cart-shipping-info">TVA incluse. Frais de port calculés à l'étape suivante.</p>
+            <button class="btn btn-primary btn-full" id="checkout-btn">Passer la commande</button>
+        </div>
+    </div>
+
+    <!-- Notification system for cart additions -->
+    <div class="notification-toast" id="notification-toast">
+        <p id="notification-text">Produit ajouté au panier !</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>LUMÉA</h3>
+                <p>Une expérience sensorielle unique où la science botanique rencontre le luxe bio pour magnifier votre peau au quotidien.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="#routine">Le Rituel</a></li>
+                    <li><a href="#best-sellers">Nos Produits</a></li>
+                    <li><a href="#ingredients">Actifs Bio</a></li>
+                    <li><a href="#testimonials">Vos Avis</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Service Client</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Expédition & Livraisons</a></li>
+                    <li><a href="#">Retours & Échanges</a></li>
+                    <li><a href="#">Formulaire de Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Suivez-nous</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Pinterest">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8 22a8.2 8.2 0 0 1-1.84-2.8A12.24 12.24 0 0 1 6.1 14.5a8.7 8.7 0 0 1 .46-2.9 6.25 6.25 0 0 1 2.22-3A6.74 6.74 0 0 1 12 7.5a6.47 6.47 0 0 1 3.5 1 5.92 5.92 0 0 1 2.22 2.8 11.23 11.23 0 0 1 .43 3.2 8.35 8.35 0 0 1-.95 4.3 6.13 6.13 0 0 1-2.9 2.5 5.56 5.56 0 0 1-4.3 0z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <p class="copyright">&copy; 2026 LUMÉA Cosmétiques. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Widget -->
+    <div class="chatbot-widget" id="chatbot-widget">
+        <!-- Chatbot Button -->
+        <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Ouvrir le chat de conseils beauté">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chat-icon">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="close-icon" style="display: none;">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span class="chatbot-notification" id="chatbot-notification">1</span>
+        </button>
+
+        <!-- Chatbot Window -->
+        <div class="chatbot-window" id="chatbot-window">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <span class="avatar-dot"></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                    </svg>
+                </div>
+                <div class="chatbot-header-info">
+                    <h3>Assistante Éclat</h3>
+                    <p>Conseils & Routine Skincare Bio</p>
+                </div>
+                <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Fermer le chat">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="chatbot-body" id="chatbot-body">
+                <!-- Welcome Message -->
+                <div class="chat-message bot">
+                    <div class="message-content">
+                        Bonjour ! Je suis l'Assistante Éclat de **Luméa**. ✨ <br> Comment puis-je vous aider aujourd'hui à trouver votre routine de soin bio idéale ?
+                    </div>
+                </div>
+                <!-- Suggested Quick Replies -->
+                <div class="chat-quick-replies" id="chat-quick-replies">
+                    <button class="quick-reply" data-question="peau_sensible">Peau sensible, que choisir ?</button>
+                    <button class="quick-reply" data-question="actifs_bio">Vos actifs bio phares ?</button>
+                    <button class="quick-reply" data-question="routine_etapes">Comment utiliser le rituel ?</button>
+                    <button class="quick-reply" data-question="vegan_cruelty">Produits véganes & bio ?</button>
+                </div>
+            </div>
+            
+            <form class="chatbot-input-area" id="chatbot-input-form">
+                <input type="text" placeholder="Posez votre question..." aria-label="Votre question" id="chatbot-input" required>
+                <button type="submit" class="chatbot-send-btn" aria-label="Envoyer">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>

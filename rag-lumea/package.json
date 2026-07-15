@@ -1,0 +1,21 @@
+{
+  "name": "rag-lumea",
+  "version": "1.0.0",
+  "description": "Chatbot RAG pour Luméa - AI Marketing Agency",
+  "type": "module",
+  "scripts": {
+    "ingest": "node ingest.js",
+    "query": "node query.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.110.0",
+    "@langchain/anthropic": "^0.3.0",
+    "@langchain/community": "^0.3.0",
+    "@langchain/core": "^1.2.1",
+    "@langchain/textsplitters": "^0.1.0",
+    "@xenova/transformers": "^2.17.0",
+    "chromadb": "^1.9.0",
+    "dotenv": "^16.4.5",
+    "langchain": "^0.3.0"
+  }
+}

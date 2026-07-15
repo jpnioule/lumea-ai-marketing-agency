@@ -1,0 +1,105 @@
+{
+  "name": "Luméa - Agent contenu Instagram",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 2,
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Déclenchement (tous les 2 jours, 9h)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Sélectionne un produit dans la rotation en fonction du jour\nconst produits = [\n  { nom: 'Gel Nettoyant Douceur', categorie: 'Nettoyant visage', typePeau: 'Toutes peaux, y compris sensibles et réactives', ingredientsCles: 'Aloe vera bio, glycérine végétale, extrait de camomille', usage: \"Matin et soir, sur peau humide, masser puis rincer à l'eau tiède\", prix: '19€ (150ml)', particularite: 'Ne dessèche pas la peau, adapté à un usage biquotidien' },\n  { nom: 'Sérum Hydra-Éclat', categorie: 'Sérum hydratant', typePeau: 'Toutes peaux, y compris sensibles', ingredientsCles: 'Acide hyaluronique, extrait de centella asiatica, vitamine B5', usage: 'Matin et soir, après nettoyage, avant crème hydratante', prix: '34€ (30ml)', particularite: 'Repulpe et illumine le teint dès 2 semaines d\\'usage' },\n  { nom: 'Crème Jour Protectrice', categorie: 'Hydratant jour', typePeau: 'Peaux normales à sèches', ingredientsCles: 'Beurre de karité bio, SPF 15, vitamine E', usage: 'Le matin, en dernière étape de la routine, avant maquillage', prix: '29€ (50ml)', particularite: 'Texture légère non grasse, finition satinée' },\n  { nom: 'Baume Nuit Réparateur', categorie: 'Soin de nuit', typePeau: 'Peaux sèches à très sèches', ingredientsCles: 'Huile de rose musquée, squalane végétal, niacinamide', usage: 'Le soir, en dernière étape, sur peau propre', prix: '38€ (30ml)', particularite: 'Action réparatrice pendant le cycle de régénération nocturne' },\n  { nom: 'Eau Micellaire Apaisante', categorie: 'Démaquillant', typePeau: 'Peaux sensibles et réactives', ingredientsCles: \"Eau florale de bleuet, panthénol, extrait d'avoine\", usage: 'Matin et/ou soir, sur coton, sans rinçage nécessaire', prix: '16€ (200ml)', particularite: 'Démaquille visage et yeux, y compris waterproof' },\n  { nom: 'Contour des Yeux Anti-Fatigue', categorie: 'Soin ciblé', typePeau: 'Toutes peaux', ingredientsCles: 'Caféine naturelle, extrait de bleuet, peptides végétaux', usage: 'Matin et soir, petite noisette, tapoter du bout des doigts', prix: '26€ (15ml)', particularite: \"Réduit l'aspect des cernes et poches dès 4 semaines\" },\n  { nom: 'Masque Argile Purifiant', categorie: 'Soin hebdomadaire', typePeau: 'Peaux mixtes à grasses', ingredientsCles: 'Argile verte, zinc, extrait de thé vert', usage: '1 à 2 fois par semaine, pause de 10 minutes, rincer à l\\'eau tiède', prix: '22€ (75ml)', particularite: 'Resserre les pores et matifie sans dessécher' },\n  { nom: 'Huile Sèche Nourrissante', categorie: 'Soin multi-usage (visage et corps)', typePeau: 'Toutes peaux, y compris mixtes', ingredientsCles: \"Huile de jojoba bio, huile d'argan, vitamine E\", usage: 'Quelques gouttes sur peau propre, visage et/ou corps, matin ou soir', prix: '24€ (50ml)', particularite: 'Pénétration rapide, finition non grasse' }\n];\n\nconst jourAnnee = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);\nconst produit = produits[jourAnnee % produits.length];\n\nreturn [{ json: produit }];"
+      },
+      "id": "select-product",
+      "name": "Sélection du produit du jour",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: \"claude-sonnet-4-6\",\n  max_tokens: 1000,\n  system: \"Tu es le social media manager de Luméa, marque de skincare bio et clean beauty. Ton : chaleureux, inspirant, jamais commercial ou agressif. Cible : femmes/hommes 25-40 ans, sensibles à la clean beauty. Contrainte stricte : reste factuel sur le produit, utilise uniquement les informations fournies dans le CONTEXTE PRODUIT. Réponds UNIQUEMENT avec un objet JSON valide, sans texte avant ni après, au format exact suivant : {\\\"accroche\\\": string, \\\"corps\\\": string, \\\"cta\\\": string, \\\"hashtags\\\": string[], \\\"promptImage\\\": string}\",\n  messages: [\n    {\n      role: \"user\",\n      content: `CONTEXTE PRODUIT :\\nNom : ${$json.nom}\\nCatégorie : ${$json.categorie}\\nType de peau : ${$json.typePeau}\\nIngrédients clés : ${$json.ingredientsCles}\\nUsage : ${$json.usage}\\nPrix : ${$json.prix}\\nParticularité : ${$json.particularite}\\n\\nGénère le post Instagram pour ce produit.`\n    }\n  ]\n}) }}"
+      },
+      "id": "call-claude",
+      "name": "Appel API Claude",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse la réponse JSON générée par Claude\nconst rawText = $input.first().json.content[0].text.trim();\nconst post = JSON.parse(rawText);\n\nreturn [{\n  json: {\n    produit: $('Sélection du produit du jour').first().json.nom,\n    accroche: post.accroche,\n    corps: post.corps,\n    cta: post.cta,\n    hashtags: post.hashtags.join(' '),\n    promptImage: post.promptImage,\n    dateGeneration: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "parse-response",
+      "name": "Parsing de la réponse",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 0]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "base": { "value": "REMPLACER_PAR_ID_BASE_AIRTABLE" },
+        "table": { "value": "Posts Instagram" },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Produit": "={{ $json.produit }}",
+            "Accroche": "={{ $json.accroche }}",
+            "Corps": "={{ $json.corps }}",
+            "CTA": "={{ $json.cta }}",
+            "Hashtags": "={{ $json.hashtags }}",
+            "Prompt image": "={{ $json.promptImage }}",
+            "Statut": "A valider",
+            "Date de génération": "={{ $json.dateGeneration }}"
+          }
+        }
+      },
+      "id": "save-airtable",
+      "name": "Sauvegarde dans Airtable (file d'attente)",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [880, 0]
+    }
+  ],
+  "connections": {
+    "Déclenchement (tous les 2 jours, 9h)": {
+      "main": [[{ "node": "Sélection du produit du jour", "type": "main", "index": 0 }]]
+    },
+    "Sélection du produit du jour": {
+      "main": [[{ "node": "Appel API Claude", "type": "main", "index": 0 }]]
+    },
+    "Appel API Claude": {
+      "main": [[{ "node": "Parsing de la réponse", "type": "main", "index": 0 }]]
+    },
+    "Parsing de la réponse": {
+      "main": [[{ "node": "Sauvegarde dans Airtable (file d'attente)", "type": "main", "index": 0 }]]
+    }
+  }
+}

@@ -1,2 +1,4 @@
 .env
 node_modules/
+# Données locales de la base vectorielle Chroma
+chroma_data/

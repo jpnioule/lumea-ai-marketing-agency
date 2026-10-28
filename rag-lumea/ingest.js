@@ -48,7 +48,7 @@ async function main() {
   });
 
   console.log("Génération des embeddings (locaux) et stockage dans Chroma ...");
-  console.log("(premier lancement : le modèle ~90 Mo se télécharge automatiquement)");
+  console.log("(premier lancement : le modèle multilingue se télécharge automatiquement)");
   const embeddings = new LocalEmbeddings();
 
   await Chroma.fromDocuments(chunks, embeddings, {

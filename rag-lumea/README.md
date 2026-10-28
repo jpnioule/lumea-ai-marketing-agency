@@ -19,8 +19,9 @@ rag-lumea/
 
 1. Installer les dépendances :
    ```
-   npm install
+   npm install --legacy-peer-deps
    ```
+   (`--legacy-peer-deps` contourne un conflit de versions connu entre les paquets LangChain)
 
 2. Copier `.env.example` en `.env` et renseigner ta clé API :
    ```
@@ -28,7 +29,7 @@ rag-lumea/
    ```
    - `ANTHROPIC_API_KEY` : utilisée pour générer les réponses avec Claude
    - Les embeddings sont générés **localement et gratuitement** via `@xenova/transformers`
-     (modèle `all-MiniLM-L6-v2`, ~90 Mo, téléchargé automatiquement au premier lancement) —
+     (modèle multilingue `paraphrase-multilingual-MiniLM-L12-v2`, adapté au français, téléchargé automatiquement au premier lancement) —
      aucune clé OpenAI n'est nécessaire
 
 3. Lancer un serveur Chroma en local (nécessite Python) :
@@ -36,6 +37,7 @@ rag-lumea/
    pip install chromadb --break-system-packages
    chroma run --host localhost --port 8000
    ```
+   Le projet utilise le client JavaScript `chromadb` 3.x, compatible avec les serveurs Chroma 1.x.
    Laisser ce terminal ouvert.
 
 ## Utilisation

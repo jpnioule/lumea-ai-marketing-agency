@@ -25,22 +25,24 @@ Marque de skincare bio vendue en direct au consommateur (DTC), 8 produits (netto
 
 ```
 lumea-ai-marketing-agency/
-├── RAG-Lumea/                  # Livrable 1 : chatbot RAG
-│   ├── data/
+├── rag-lumea/                   # Livrable 1 : chatbot RAG (Node.js, Chroma, Claude)
+│   ├── data/                    # base de connaissances : fiches produits et FAQ
 │   ├── embeddings.js
 │   ├── ingest.js
 │   ├── query.js
 │   ├── .env.example
 │   └── package.json
-├── Instagram-Agent/             # Livrable 2 : agent de contenu
+├── instagram-agent-lumea/       # Livrable 2 : agent de contenu Instagram
 │   ├── agent.js
-│   ├── n8n-workflow-instagram.json
+│   ├── n8n-workflow-instagram-agent.json
 │   ├── products.json
 │   ├── .env.example
 │   └── package.json
-├── n8n-nurturing-workflow/      # Livrable 3 : séquence email (export JSON)
-├── landing-page/                # Livrable 4 : site vitrine + formulaire + chatbot intégré
+├── n8n workflows/               # Livrables 2 et 3 : exports JSON des workflows n8n
+├── landing page/                # Livrable 4 : site vitrine, formulaire et assistant de démonstration
+├── docs/                        # captures du projet
 ├── documentation-detaillee-lumea.docx
+├── Presentation-Lumea-AI-Marketing-Agency.pptx
 └── README.md
 ```
 
@@ -53,7 +55,7 @@ lumea-ai-marketing-agency/
 | Embeddings | Modèle multilingue local (Xenova/transformers) | Vectorisation gratuite, sans dépendance API tierce |
 | Orchestration | n8n Cloud | Nurturing email et agent de contenu Instagram |
 | Base de données | Airtable | Leads et file d'attente de contenu à valider |
-| Landing page | HTML / CSS / JS | Vitrine, chatbot intégré, formulaire de capture |
+| Landing page | HTML / CSS / JS | Vitrine, assistant de démonstration, formulaire de capture |
 | Hébergement | Netlify | Déploiement public de la landing page |
 | Versionning | GitHub | Archivage et partage du code source |
 
@@ -63,11 +65,16 @@ Base de connaissances de 11 documents (8 fiches produits + routine, livraison/re
 
 **Difficulté résolue :** le premier modèle d'embeddings testé (anglophone) donnait des résultats imprécis en français ; le passage à un modèle multilingue + l'augmentation du nombre de chunks récupérés (4 → 10) a résolu le problème.
 
+![Le chatbot RAG répond à une question sur les peaux sensibles à partir des fiches produits](docs/demo-chatbot-rag.png)
+
+*Exemple : les trois produits cités, leurs prix et leurs actifs proviennent tous des fiches de la base de connaissances.*
+
 ```
-cd RAG-Lumea
-npm install
-node ingest.js      # indexation de la base de connaissances
-node query.js        # test du chatbot en ligne de commande
+cd rag-lumea
+npm install --legacy-peer-deps
+chroma run --path chroma_data --host localhost --port 8000   # dans un terminal à part
+npm run ingest                                                # indexation de la base de connaissances
+node query.js "Quel produit convient pour une peau sensible ?"
 ```
 
 ## Livrable 2 — Agent de contenu Instagram
@@ -96,7 +103,9 @@ Avant chaque email (sauf le premier), le workflow vérifie dans Airtable si le l
 
 ## Livrable 4 — Landing page
 
-Identité visuelle de la marque (palette verts/argile, typographie serif), hero avec étiquette produit stylisée, présentation de la gamme, frise interactive routine matin/soir, chatbot RAG intégré et formulaire de capture de leads connecté au webhook n8n. Déployée sur Netlify.
+Identité visuelle de la marque (palette verts/argile, typographie serif), hero avec étiquette produit stylisée, présentation de la gamme, frise interactive routine matin/soir, assistant de démonstration à réponses prédéfinies et formulaire de capture de leads connecté au webhook n8n. Déployée sur Netlify.
+
+**Prochaine étape :** relier l'assistant de la landing page au moteur RAG (livrable 1) via une fonction serverless, pour qu'il réponde à partir de la base de connaissances.
 
 ## Installation
 

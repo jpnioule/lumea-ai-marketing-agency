@@ -545,7 +545,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
-            contentDiv.innerHTML = text;
+            if (sender === 'bot') {
+                // Les réponses de l'assistant passent les **mots** en gras
+                contentDiv.innerHTML = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            } else {
+                // Le texte tapé par le visiteur est affiché tel quel, jamais interprété comme du HTML
+                contentDiv.textContent = text;
+            }
             
             msgDiv.appendChild(contentDiv);
             chatbotBody.appendChild(msgDiv);

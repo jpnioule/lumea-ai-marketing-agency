@@ -1,7 +1,8 @@
 // embeddings.js
 // Génère des embeddings localement, sans clé API, via un petit modèle
-// (all-MiniLM-L6-v2) exécuté directement dans Node grâce à @xenova/transformers.
-// Le modèle (~90 Mo) est téléchargé automatiquement au premier lancement,
+// multilingue (paraphrase-multilingual-MiniLM-L12-v2), adapté aux textes en français,
+// exécuté directement dans Node grâce à @xenova/transformers.
+// Le modèle est téléchargé automatiquement au premier lancement,
 // puis mis en cache localement pour les exécutions suivantes.
 
 import { pipeline } from "@xenova/transformers";
@@ -10,7 +11,7 @@ let embedderPromise = null;
 
 function getEmbedder() {
   if (!embedderPromise) {
-    embedderPromise = pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2");
+    embedderPromise = pipeline("feature-extraction", "Xenova/paraphrase-multilingual-MiniLM-L12-v2");
   }
   return embedderPromise;
 }

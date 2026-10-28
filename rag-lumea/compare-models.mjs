@@ -13,16 +13,16 @@ const MODELS = {
 
 // Questions de client, et fiche(s) attendue(s) fixées avant le test
 const TESTS = [
-  ["Quel produit convient pour une peau sensible ?", ["gel-nettoyant-douceur", "eau-micellaire-apaisante", "serum-hydra-eclat"]],
+  ["Quel produit convient pour une peau sensible ?", ["gel-nettoyant-purifiant", "brume-tonique-rose", "creme-hydratante-intense"]],
   ["Combien de temps pour être livré ?", ["livraison-retours"]],
   ["Comment renvoyer un produit qui ne me convient pas ?", ["livraison-retours"]],
-  ["J'ai la peau grasse avec des imperfections, que me conseillez-vous ?", ["masque-argile-purifiant"]],
-  ["Un soin contre les cernes et les poches ?", ["contour-yeux-anti-fatigue"]],
+  ["Mon teint est terne et fatigué, que me conseillez-vous ?", ["elixir-eclat-vitamine-c"]],
+  ["Ma peau est très sèche et tiraille, quel soin choisir ?", ["creme-hydratante-intense"]],
   ["Dans quel ordre appliquer les soins le soir ?", ["routine-matin-soir"]],
   ["Vos produits sont-ils testés sur les animaux ?", ["engagement-lumea"]],
-  ["Ma peau est très sèche et tiraille, quel soin choisir ?", ["baume-nuit-reparateur", "creme-jour-protectrice", "huile-seche-nourrissante"]],
-  ["Quelle crème mettre le matin avant le maquillage ?", ["creme-jour-protectrice"]],
-  ["Quel produit pour démaquiller en douceur ?", ["eau-micellaire-apaisante"]],
+  ["Comment me rafraîchir le visage dans la journée ?", ["brume-tonique-rose"]],
+  ["Je cherche un nettoyant qui ne dessèche pas la peau", ["gel-nettoyant-purifiant"]],
+  ["Avez-vous un sérum antioxydant pour le matin ?", ["elixir-eclat-vitamine-c"]],
 ];
 
 const loader = new DirectoryLoader(path.resolve("./data"), { ".txt": (f) => new TextLoader(f) });

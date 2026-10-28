@@ -19,7 +19,7 @@ Le projet démontre l'intégration de plusieurs briques d'IA générative : RAG 
 
 ## Le client fictif : Luméa
 
-Marque de skincare bio vendue en direct au consommateur (DTC), 8 produits (nettoyant, sérum, crème jour, baume nuit, démaquillant, contour des yeux, masque, huile sèche). Cible : 25-40 ans sensibles à la clean beauty, panier moyen 45€. Problématique : scaler l'acquisition et le support client sans recruter, tout en professionnalisant la présence sociale.
+Marque de skincare bio vendue en direct au consommateur (DTC), 4 soins formant un rituel en trois étapes (gel nettoyant, brume tonique, sérum à la vitamine C, crème hydratante). Cible : 25-40 ans sensibles à la clean beauty, panier moyen 45€. Problématique : scaler l'acquisition et le support client sans recruter, tout en professionnalisant la présence sociale.
 
 ## Architecture du projet
 
@@ -61,21 +61,19 @@ lumea-ai-marketing-agency/
 
 ## Livrable 1 — Chatbot RAG
 
-Base de connaissances de 11 documents (8 fiches produits + routine, livraison/retours, engagement de marque), découpés en 16 chunks (500 caractères, chevauchement 50) via un `RecursiveCharacterTextSplitter`, vectorisés avec un modèle d'embeddings **multilingue local** (`paraphrase-multilingual-MiniLM-L12-v2`) et stockés dans Chroma. Les 10 chunks les plus pertinents sont transmis à Claude avec un prompt système strict imposant de répondre uniquement à partir du contexte fourni et de reconnaître une absence d'information plutôt que d'halluciner.
+Base de connaissances de 7 documents (les 4 fiches produits de la landing page, le rituel matin et soir, la livraison et les retours, l'engagement de marque), découpés en 15 chunks (500 caractères, chevauchement 50) via un `RecursiveCharacterTextSplitter`, vectorisés avec un modèle d'embeddings **multilingue local** (`paraphrase-multilingual-MiniLM-L12-v2`) et stockés dans Chroma. Les 10 chunks les plus pertinents sont transmis à Claude avec un prompt système strict imposant de répondre uniquement à partir du contexte fourni et de reconnaître une absence d'information plutôt que d'halluciner.
 
 **Difficulté résolue, et mesurée :** le premier modèle d'embeddings (anglophone, `all-MiniLM-L6-v2`) retrouvait mal les bons passages en français. Pour le vérifier, un jeu de test de 10 questions de clients, avec les fiches attendues fixées à l'avance, compare les deux modèles sur la recherche de passages (`npm run evaluate`, script `rag-lumea/compare-models.mjs`, sans appel à Claude) :
 
 | Indicateur | Modèle anglais | Modèle multilingue |
 |:---|---:|---:|
-| Bon passage en 1re position | 3/10 | **7/10** |
-| Bon passage dans le top 3 | 6/10 | **8/10** |
-| MRR (qualité moyenne du classement, 1 = parfait) | 0,49 | **0,78** |
+| Bon passage en 1re position | 3/10 | **4/10** |
+| Bon passage dans le top 3 | 5/10 | **10/10** |
+| MRR (qualité moyenne du classement, 1 = parfait) | 0,48 | **0,67** |
 
-Le modèle multilingue a donc été retenu. Deux questions restent difficiles (peau grasse, démaquillage) : la bonne fiche n'arrive qu'en 8e position, d'où le choix de transmettre 10 passages à Claude plutôt que 4. Limite : 10 questions forment un petit échantillon ; pistes d'amélioration : élargir le jeu de test et essayer une recherche hybride (sémantique et par mots-clés).
+Le modèle multilingue a donc été retenu : il place toujours un bon passage dans les trois premiers, alors que le modèle anglais le classe parfois au-delà de la 10e place (14e pour « Vos produits sont-ils testés sur les animaux ? »). Le premier résultat est souvent la fiche du rituel matin et soir : elle cite tous les produits et contient souvent une partie de la réponse, mais elle n'est pas comptée comme bonne réponse, puisque les fiches attendues ont été fixées avant le test. Limite : 10 questions forment un petit échantillon ; pistes d'amélioration : élargir le jeu de test et essayer une recherche hybride (sémantique et par mots-clés).
 
-![Le chatbot RAG répond à une question sur les peaux sensibles à partir des fiches produits](docs/demo-chatbot-rag.png)
-
-*Exemple : les trois produits cités, leurs prix et leurs actifs proviennent tous des fiches de la base de connaissances.*
+*Le catalogue de la base de connaissances est le même que celui de la landing page : le chatbot ne peut conseiller que des produits réellement présentés sur le site.*
 
 ```
 cd rag-lumea

@@ -7,7 +7,7 @@ Base de connaissances vectorisée pour le chatbot service client de Luméa (AI M
 ```
 rag-lumea/
 ├── data/
-│   ├── produits/     8 fiches produits de la gamme Luméa
+│   ├── produits/     4 fiches produits, les mêmes que sur la landing page
 │   └── faq/          Routine, livraison/retours, engagement de la marque
 ├── ingest.js         Vectorise les documents dans Chroma
 ├── query.js          Interroge le chatbot (retrieval + génération)

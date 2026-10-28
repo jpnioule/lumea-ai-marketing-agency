@@ -16,6 +16,7 @@ import { TextLoader } from "langchain/document_loaders/fs/text";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { LocalEmbeddings } from "./embeddings.js";
 import { Chroma } from "@langchain/community/vectorstores/chroma";
+import { ChromaClient } from "chromadb";
 
 const DATA_DIR = path.resolve("./data");
 const COLLECTION_NAME = "lumea-knowledge-base";
@@ -42,18 +43,28 @@ async function main() {
   // (produits vs faq) pour permettre un filtrage plus tard si besoin
   chunks.forEach((chunk) => {
     const sourcePath = chunk.metadata.source || "";
-    chunk.metadata.category = sourcePath.includes("/produits/")
-      ? "produit"
-      : "faq";
+    // Nom du dossier parent : fonctionne sous Windows comme sous Linux/macOS
+    chunk.metadata.category =
+      path.basename(path.dirname(sourcePath)) === "produits" ? "produit" : "faq";
   });
 
   console.log("Génération des embeddings (locaux) et stockage dans Chroma ...");
   console.log("(premier lancement : le modèle multilingue se télécharge automatiquement)");
   const embeddings = new LocalEmbeddings();
+  const chromaUrl = process.env.CHROMA_URL || "http://localhost:8000";
+
+  // Repart d'une collection vide : sans cela, une nouvelle ingestion
+  // s'ajouterait aux anciens extraits, qui resteraient trouvables.
+  try {
+    await new ChromaClient({ path: chromaUrl }).deleteCollection({ name: COLLECTION_NAME });
+    console.log("Ancienne collection supprimée.");
+  } catch {
+    // Première ingestion : la collection n'existe pas encore
+  }
 
   await Chroma.fromDocuments(chunks, embeddings, {
     collectionName: COLLECTION_NAME,
-    url: process.env.CHROMA_URL || "http://localhost:8000",
+    url: chromaUrl,
   });
 
   console.log(

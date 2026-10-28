@@ -501,6 +501,16 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         setupQuickReplies();
 
+        // Liens du pied de page (FAQ, livraison, retours) : ouvrent l'assistant, avec la question si besoin
+        document.querySelectorAll('[data-open-chat]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleChat(true);
+                const question = link.dataset.openChat;
+                if (question) setTimeout(() => handleUserMessage(question), 350);
+            });
+        });
+
         // Handle User Input Submission
         if (chatbotInputForm) {
             chatbotInputForm.addEventListener('submit', (e) => {
@@ -583,21 +593,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // Bot Response Engine
         function getBotResponse(text, key) {
             const cleaned = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+            // Testé en premier : « Comment retourner… » ne doit pas déclencher la réponse sur la routine
+            if (cleaned.includes('retour') || cleaned.includes('rembours') || cleaned.includes('echange') || cleaned.includes('renvoyer')) {
+                return `Les retours sont **gratuits sous 30 jours** après réception. Contactez-nous avec votre numéro de commande : nous vous envoyons une étiquette prépayée, et le remboursement est effectué dès réception du colis. 🔄`;
+            }
+
             
             if (key === 'peau_sensible' || cleaned.includes('sensible') || cleaned.includes('rougeur') || cleaned.includes('irrit') || cleaned.includes('bouton') || cleaned.includes('acne')) {
                 return `Pour les peaux sensibles, délicates ou réactives, nous recommandons le rituel suivant :<br>
                 1. **Gel Nettoyant Purifiant** à l'Aloe Vera apaisant.<br>
-                2. **Brume Tonique Active** à la Rose de Damas qui calme instantanément.<br>
+                2. **Brume Tonique Active** à la rose de Damas, qui apaise et rafraîchit.<br>
                 3. **Crème Hydratante Intense** enrichie en Jojoba pour réparer la barrière cutanée.<br>
                 <a href="#best-sellers">Acheter la collection</a>`;
             }
             
             if (key === 'actifs_bio' || cleaned.includes('actif') || cleaned.includes('ingredient') || cleaned.includes('composition') || cleaned.includes('formule')) {
-                return `Nos formules concentrent des actifs botaniques purs certifiés bio par Ecocert :<br>
-                - **Acide Hyaluronique Végétal** (issu du blé) pour repulper.<br>
+                return `Nos formules concentrent des actifs végétaux issus de l’agriculture biologique :<br>
+                - **Acide hyaluronique végétal**, obtenu par fermentation, pour hydrater.<br>
                 - **Aloe Vera Natif** pour hydrater et apaiser.<br>
                 - **Hydrolat de Rose de Damas** pour rééquilibrer et illuminer.<br>
-                - **Thé Vert** pour protéger du vieillissement prématuré.<br>
+                - **Thé vert**, antioxydant, pour aider à protéger la peau des agressions extérieures.<br>
                 <a href="#ingredients">En savoir plus</a>`;
             }
             
@@ -612,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (key === 'vegan_cruelty' || cleaned.includes('vegan') || cleaned.includes('animaux') || cleaned.includes('bio') || cleaned.includes('label') || cleaned.includes('certif')) {
                 return `Oui ! Luméa est une marque engagée :<br>
                 - **100% de nos soins sont véganes** et non testés sur les animaux (cruelty-free).<br>
-                - **Ingrédients certifiés Bio** par Ecocert.<br>
+                - **Ingrédients issus de l’agriculture biologique**.<br>
                 - **Flacons en verre givré recyclable** et étuis en carton FSC.<br>
                 Aucun paraben, silicone ou parfum de synthèse n'est utilisé. 🌿`;
             }
@@ -622,7 +638,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (cleaned.includes('prix') || cleaned.includes('tarif') || cleaned.includes('cher') || cleaned.includes('combien')) {
-                return `Nos prix varient de **24,00 €** pour le Gel Nettoyant à **42,00 €** pour notre Élixir Éclat à la Vitamine C. Profitez de **-15% sur votre premier achat** en vous inscrivant à notre newsletter en bas de page ! ✨`;
+                return `Nos prix varient de **24,00 €** pour le Gel Nettoyant à **42,00 €** pour notre Élixir Éclat à la Vitamine C. Profitez de **-15 % sur votre première commande** en vous inscrivant à notre newsletter en bas de page ! ✨`;
             }
 
             if (cleaned.includes('livraison') || cleaned.includes('frais de port') || cleaned.includes('envoi') || cleaned.includes('livrer')) {

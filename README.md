@@ -75,6 +75,10 @@ Le modèle multilingue a donc été retenu : il place toujours un bon passage da
 
 *Le catalogue de la base de connaissances est le même que celui de la landing page : le chatbot ne peut conseiller que des produits réellement présentés sur le site.*
 
+![Le chatbot RAG répond à une question sur les peaux sensibles à partir des fiches produits](docs/demo-chatbot-rag.png)
+
+*Exemple : les produits cités, leurs prix, leurs formats et la précaution d'usage de l'Élixir proviennent tous des fiches de la base de connaissances.*
+
 ```
 cd rag-lumea
 npm install --legacy-peer-deps

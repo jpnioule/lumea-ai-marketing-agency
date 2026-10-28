@@ -602,17 +602,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (key === 'peau_sensible' || cleaned.includes('sensible') || cleaned.includes('rougeur') || cleaned.includes('irrit') || cleaned.includes('bouton') || cleaned.includes('acne')) {
                 return `Pour les peaux sensibles, délicates ou réactives, nous recommandons le rituel suivant :<br>
-                1. **Gel Nettoyant Purifiant** à l'Aloe Vera apaisant.<br>
+                1. **Gel Nettoyant Purifiant** à l’aloe vera apaisant.<br>
                 2. **Brume Tonique Active** à la rose de Damas, qui apaise et rafraîchit.<br>
-                3. **Crème Hydratante Intense** enrichie en Jojoba pour réparer la barrière cutanée.<br>
+                3. **Crème Hydratante Intense** à l’huile de jojoba, pour aider à protéger la barrière cutanée.<br>
                 <a href="#best-sellers">Acheter la collection</a>`;
             }
             
             if (key === 'actifs_bio' || cleaned.includes('actif') || cleaned.includes('ingredient') || cleaned.includes('composition') || cleaned.includes('formule')) {
                 return `Nos formules concentrent des actifs végétaux issus de l’agriculture biologique :<br>
                 - **Acide hyaluronique végétal**, obtenu par fermentation, pour hydrater.<br>
-                - **Aloe Vera Natif** pour hydrater et apaiser.<br>
-                - **Hydrolat de Rose de Damas** pour rééquilibrer et illuminer.<br>
+                - **Aloe vera** pour hydrater et apaiser.<br>
+                - **Hydrolat de rose de Damas** pour rééquilibrer et illuminer.<br>
                 - **Thé vert**, antioxydant, pour aider à protéger la peau des agressions extérieures.<br>
                 <a href="#ingredients">En savoir plus</a>`;
             }

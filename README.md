@@ -63,7 +63,15 @@ lumea-ai-marketing-agency/
 
 Base de connaissances de 11 documents (8 fiches produits + routine, livraison/retours, engagement de marque), découpés en 16 chunks (500 caractères, chevauchement 50) via un `RecursiveCharacterTextSplitter`, vectorisés avec un modèle d'embeddings **multilingue local** (`paraphrase-multilingual-MiniLM-L12-v2`) et stockés dans Chroma. Les 10 chunks les plus pertinents sont transmis à Claude avec un prompt système strict imposant de répondre uniquement à partir du contexte fourni et de reconnaître une absence d'information plutôt que d'halluciner.
 
-**Difficulté résolue :** le premier modèle d'embeddings testé (anglophone) donnait des résultats imprécis en français ; le passage à un modèle multilingue + l'augmentation du nombre de chunks récupérés (4 → 10) a résolu le problème.
+**Difficulté résolue, et mesurée :** le premier modèle d'embeddings (anglophone, `all-MiniLM-L6-v2`) retrouvait mal les bons passages en français. Pour le vérifier, un jeu de test de 10 questions de clients, avec les fiches attendues fixées à l'avance, compare les deux modèles sur la recherche de passages (`npm run evaluate`, script `rag-lumea/compare-models.mjs`, sans appel à Claude) :
+
+| Indicateur | Modèle anglais | Modèle multilingue |
+|:---|---:|---:|
+| Bon passage en 1re position | 3/10 | **7/10** |
+| Bon passage dans le top 3 | 6/10 | **8/10** |
+| MRR (qualité moyenne du classement, 1 = parfait) | 0,49 | **0,78** |
+
+Le modèle multilingue a donc été retenu. Deux questions restent difficiles (peau grasse, démaquillage) : la bonne fiche n'arrive qu'en 8e position, d'où le choix de transmettre 10 passages à Claude plutôt que 4. Limite : 10 questions forment un petit échantillon ; pistes d'amélioration : élargir le jeu de test et essayer une recherche hybride (sémantique et par mots-clés).
 
 ![Le chatbot RAG répond à une question sur les peaux sensibles à partir des fiches produits](docs/demo-chatbot-rag.png)
 

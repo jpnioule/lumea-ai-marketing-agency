@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "ingest": "node ingest.js",
-    "query": "node query.js"
+    "query": "node query.js",
+    "evaluate": "node compare-models.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",

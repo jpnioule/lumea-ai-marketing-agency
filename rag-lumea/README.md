@@ -54,6 +54,11 @@ Dans un autre terminal :
    node query.js "Quel produit convient pour une peau sensible ?"
    ```
 
+3. Évaluer la recherche de passages (comparaison des modèles d'embeddings, sans appel à Claude) :
+   ```
+   npm run evaluate
+   ```
+
 ## Pour la démo / présentation
 
 - Le chatbot répond uniquement à partir des documents dans `/data` (pas d'invention)

@@ -115,6 +115,8 @@ Avant chaque email (sauf le premier), le workflow vérifie dans Airtable si le l
 
 Identité visuelle de la marque (palette verts/argile, typographie serif), hero avec étiquette produit stylisée, présentation de la gamme, frise interactive routine matin/soir, assistant de démonstration à réponses prédéfinies et formulaire de capture de leads connecté au webhook n8n. Déployée sur Netlify.
 
+![Landing page Luméa et son assistant de démonstration](docs/landing-page.webp)
+
 **Prochaine étape :** relier l'assistant de la landing page au moteur RAG (livrable 1) via une fonction serverless, pour qu'il réponde à partir de la base de connaissances.
 
 ## Installation

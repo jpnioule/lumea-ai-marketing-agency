@@ -4,7 +4,7 @@
 // corps, CTA, hashtags) et un prompt de génération d'image cohérent
 // avec l'identité visuelle de la marque.
 //
-// Usage : node agent.js "Sérum Hydra-Éclat"
+// Usage : node agent.js "Élixir Éclat Vitamine C"
 
 import "dotenv/config";
 import fs from "fs";
@@ -49,8 +49,10 @@ Catégorie : ${product.categorie}
 Type de peau : ${product.typePeau}
 Ingrédients clés : ${product.ingredientsCles}
 Usage : ${product.usage}
-Prix : ${product.prix}
-Particularité : ${product.particularite}
+Bénéfices : ${product.benefices}
+Précautions : ${product.precautions}
+Prix : ${product.prix}${product.particularite ? `
+Particularité : ${product.particularite}` : ""}
 `;
 
   const client = new Anthropic({

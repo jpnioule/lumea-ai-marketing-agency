@@ -1,74 +1,44 @@
 [
   {
-    "nom": "Gel Nettoyant Douceur",
+    "nom": "Gel Nettoyant Purifiant Botanique",
     "categorie": "Nettoyant visage",
     "typePeau": "Toutes peaux, y compris sensibles et réactives",
-    "ingredientsCles": "Aloe vera bio, glycérine végétale, extrait de camomille",
-    "usage": "Matin et soir, sur peau humide, masser puis rincer à l'eau tiède",
-    "prix": "19€ (150ml)",
-    "particularite": "Ne dessèche pas la peau, adapté à un usage biquotidien"
+    "ingredientsCles": "Aloe vera bio, extrait de menthe douce, glycérine végétale",
+    "usage": "Matin et soir, étape 1 du rituel. Sur peau humide, masser puis rincer à l'eau tiède",
+    "benefices": "Élimine les impuretés sans dessécher et préserve le film hydrolipidique de la peau",
+    "precautions": "Aucune connue, sans sulfates ni savon",
+    "prix": "24€ (150ml)",
+    "particularite": "Nouveauté de la collection, adaptée à un usage biquotidien"
   },
   {
-    "nom": "Sérum Hydra-Éclat",
-    "categorie": "Sérum hydratant",
-    "typePeau": "Toutes peaux, y compris sensibles",
-    "ingredientsCles": "Acide hyaluronique, extrait de centella asiatica, vitamine B5",
-    "usage": "Matin et soir, après nettoyage, avant crème hydratante",
-    "prix": "34€ (30ml)",
-    "particularite": "Repulpe et illumine le teint dès 2 semaines d'usage"
+    "nom": "Brume Tonique Active à la Rose",
+    "categorie": "Tonique visage en brume",
+    "typePeau": "Toutes peaux, en particulier sèches et sensibles",
+    "ingredientsCles": "Hydrolat de rose de Damas, eau florale de camomille",
+    "usage": "Matin et soir, étape 2 du rituel, après le nettoyage. Vaporiser à 20 cm du visage. Aussi dans la journée pour rafraîchir la peau",
+    "benefices": "Rééquilibre la peau après le nettoyage, apaise, rafraîchit et prépare aux soins suivants",
+    "precautions": "Aucune connue, sans alcool",
+    "prix": "28€ (100ml)"
   },
   {
-    "nom": "Crème Jour Protectrice",
-    "categorie": "Hydratant jour",
-    "typePeau": "Peaux normales à sèches",
-    "ingredientsCles": "Beurre de karité bio, SPF 15, vitamine E",
-    "usage": "Le matin, en dernière étape de la routine, avant maquillage",
-    "prix": "29€ (50ml)",
-    "particularite": "Texture légère non grasse, finition satinée"
+    "nom": "Élixir Éclat Vitamine C",
+    "categorie": "Sérum visage",
+    "typePeau": "Toutes peaux, en particulier ternes ou fatiguées, y compris mixtes",
+    "ingredientsCles": "Vitamine C d'origine végétale, extrait de thé vert bio",
+    "usage": "Le matin, étape 3 du rituel. 3 à 4 gouttes sur peau propre, avant la crème",
+    "benefices": "Ravive l'éclat du teint. Antioxydant, il aide à protéger la peau des agressions extérieures comme la pollution",
+    "precautions": "Peaux très réactives : commencer un jour sur deux. Ne pas appliquer sur une peau irritée",
+    "prix": "42€ (30ml)",
+    "particularite": "Soin favori de la communauté Luméa"
   },
   {
-    "nom": "Baume Nuit Réparateur",
-    "categorie": "Soin de nuit",
-    "typePeau": "Peaux sèches à très sèches",
-    "ingredientsCles": "Huile de rose musquée, squalane végétal, niacinamide",
-    "usage": "Le soir, en dernière étape, sur peau propre",
-    "prix": "38€ (30ml)",
-    "particularite": "Action réparatrice pendant le cycle de régénération nocturne"
-  },
-  {
-    "nom": "Eau Micellaire Apaisante",
-    "categorie": "Démaquillant",
-    "typePeau": "Peaux sensibles et réactives",
-    "ingredientsCles": "Eau florale de bleuet, panthénol, extrait d'avoine",
-    "usage": "Matin et/ou soir, sur coton, sans rinçage nécessaire",
-    "prix": "16€ (200ml)",
-    "particularite": "Démaquille visage et yeux, y compris waterproof"
-  },
-  {
-    "nom": "Contour des Yeux Anti-Fatigue",
-    "categorie": "Soin ciblé",
-    "typePeau": "Toutes peaux",
-    "ingredientsCles": "Caféine naturelle, extrait de bleuet, peptides végétaux",
-    "usage": "Matin et soir, petite noisette, tapoter du bout des doigts",
-    "prix": "26€ (15ml)",
-    "particularite": "Réduit l'aspect des cernes et poches dès 4 semaines"
-  },
-  {
-    "nom": "Masque Argile Purifiant",
-    "categorie": "Soin hebdomadaire",
-    "typePeau": "Peaux mixtes à grasses",
-    "ingredientsCles": "Argile verte, zinc, extrait de thé vert",
-    "usage": "1 à 2 fois par semaine, pause de 10 minutes, rincer à l'eau tiède",
-    "prix": "22€ (75ml)",
-    "particularite": "Resserre les pores et matifie sans dessécher"
-  },
-  {
-    "nom": "Huile Sèche Nourrissante",
-    "categorie": "Soin multi-usage (visage et corps)",
-    "typePeau": "Toutes peaux, y compris mixtes",
-    "ingredientsCles": "Huile de jojoba bio, huile d'argan, vitamine E",
-    "usage": "Quelques gouttes sur peau propre, visage et/ou corps, matin ou soir",
-    "prix": "24€ (50ml)",
-    "particularite": "Pénétration rapide, finition non grasse"
+    "nom": "Crème Hydratante Intense",
+    "categorie": "Crème visage",
+    "typePeau": "Peaux normales à sèches, y compris sensibles",
+    "ingredientsCles": "Acide hyaluronique végétal, huile de jojoba bio",
+    "usage": "Le soir, étape 3 du rituel, en dernière étape sur peau propre. Aussi le matin pour les peaux très sèches",
+    "benefices": "Hydrate en profondeur, nourrit et aide à protéger la barrière cutanée. La peau reste souple et confortable",
+    "precautions": "Aucune connue, sans parfum de synthèse",
+    "prix": "38€ (50ml)"
   }
 ]
